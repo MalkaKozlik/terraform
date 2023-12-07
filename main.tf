@@ -6,9 +6,9 @@ terraform {
     }
   }
   backend "azurerm" {
-    resource_group_name  = "rg-tf-state-mk"
-    storage_account_name = "sttfstatemk"
-    container_name       = "tfstate"
+    resource_group_name  = "NetworkWatcherRG"
+    storage_account_name = "myfirsttrail"
+    container_name       = "terraformstatedemo"
     key                  = "terraform.tfstate"
   }
 }
@@ -20,16 +20,16 @@ provider "azurerm" {
     }
   }
 
-  subscription_id = "a173eef2-33d7-4d55-b0b5-18b271f8d42b"
+  subscription_id = var.subscription_id
 }
 
 resource "azurerm_resource_group" "state_resource_group" {
-  name     = "rg-tf-state-mk"
+  name     = var.rg_name
   location = "West Europe"
 }
 
 resource "azurerm_storage_account" "storage_account" {
-  name                     = "sttfstatemk"
+  name                     = var.st_name
   resource_group_name      = azurerm_resource_group.state_resource_group.name
   location                 = azurerm_resource_group.state_resource_group.location
   account_tier             = "Standard"
@@ -39,11 +39,4 @@ resource "azurerm_storage_account" "storage_account" {
     environment = "staging"
   }
 }
-
-resource "azurerm_storage_container" "storage_container" {
-  name                  = "tfstate"
-  storage_account_name  = azurerm_storage_account.storage_account.name
-  container_access_type = "private"
-}
-
 
