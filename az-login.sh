@@ -1,2 +1,2 @@
-#!/bin/bash
+#!/usr/bin/bash
 az login --use-device-code
