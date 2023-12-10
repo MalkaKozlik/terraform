@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-az login --use-device-code
+sudo az login --use-device-code
