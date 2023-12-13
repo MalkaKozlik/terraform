@@ -10,19 +10,18 @@ terraform {
     storage_account_name = "myfirsttrail"
     container_name       = "terraformstatedemo"
     key                  = "terraform.tfstate"
-    features {}
   }
 }
 
-# provider "azurerm" {
-#   features {
-#     resource_group {
-#       prevent_deletion_if_contains_resources = false
-#     }
-#   }
+provider "azurerm" {
+  features {
+    resource_group {
+      prevent_deletion_if_contains_resources = false
+    }
+  }
 
-#   subscription_id = "4b790616-7e75-4a6a-a4e0-52db256f6ad9"
-# }
+  subscription_id = "4b790616-7e75-4a6a-a4e0-52db256f6ad9"
+}
 
 resource "azurerm_resource_group" "state_resource_group" {
   name     = var.rg_name
