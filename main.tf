@@ -10,6 +10,7 @@ terraform {
     storage_account_name = "myfirsttrail"
     container_name       = "terraformstatedemo"
     key                  = "terraform.tfstate"
+    features {}
   }
 }
 
