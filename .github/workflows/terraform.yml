@@ -1,33 +1,39 @@
-name: terraform for azure
+name: 'Terraform'
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
   pull_request:
-    branches: ["main"]
+    branches: [ "main" ]
+
 env:
   TF_VAR_rg_name: "rg-tf-state-mk2"
-  TF_VAR_subscription_id: ${{secrets.SUBSCRIPTION_ID}}
+  ARM_SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID}}
+  ARM_TENANT_ID: ${{secrets.ARM_TENANT_ID}}
+  ARM_CLIENT_ID: ${{secrets.ARM_CLIENT_ID}}
+  ARM_CLIENT_SECRET: ${{secrets.ARM_CLIENT_SECRET}}
+
 jobs:
-  terraform:
-
+  job1:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
+
       - name: HashiCorp - Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.0
-      - name: az login
-        id: az-login
-        run: az login --use-device-code
+      
+      - name : az login
+        id : az-login
+        run : az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
+
       - name: Terraform Init
         id: init
-        run: terraform init -input=false
-
-      - name: Terraform plan
+        run: terraform init -input=false 
+ 
+      - name: Terraform Plan
         id: plan
-        run: terraform plan -input=false
+        run: terraform plan -out=tfplan -input=false 
 
-      - name: Terraform apply
+      - name: Terraform Apply
         id: apply
-        run: terraform apply -input=false -auto-approve
+        run: terraform apply -input=false -auto-approve tfplan
