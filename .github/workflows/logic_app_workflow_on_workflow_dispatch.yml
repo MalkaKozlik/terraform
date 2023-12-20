@@ -25,6 +25,6 @@ jobs:
       - uses: azure/arm-deploy@v1
         name: deploy
         with:
-          resourceGroupName: $RESOURCE_GROUP_NAME
+          resourceGroupName: "NetworkWatcherRG"
           template: ./ARMTemplates/LA_Standard_Basic.json
           # parameters: ./ARMTemplates/LA_Standard_Basic_Param.json 
