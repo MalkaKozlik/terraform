@@ -17,17 +17,18 @@ jobs:
           creds: '{"clientId":"${{ secrets.ARM_CLIENT_ID }}","clientSecret":"${{ secrets.ARM_CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.ARM_TENANT_ID }}"}'
           enable-AzPSSession: true 
 
-      - name: Get publish Profile
-        id: fncapp
-        uses: azure/powershell@v1
-        with:
-          inlineScript: |
-            $profile = Get-AzWebAppPublishingProfile `
-              -ResourceGroupName NetworkWatcherRG `
-              -Name logic-app-storage-management
-            $profile = $profile.Replace("`r", "").Replace("`n", "")
-            Write-Output "::set-output name=profile::$profile"
-          azPSVersion: latest
+      # - name: Get publish Profile
+      #   id: fncapp
+      #   uses: azure/powershell@v1
+      #   with:
+      #     inlineScript: |
+      #       $profile = Get-AzWebAppPublishingProfile `
+      #         -ResourceGroupName NetworkWatcherRG `
+      #         -Name logic-app-storage-management
+      #       $profile = $profile.Replace("`r", "").Replace("`n", "")
+      #       Write-Output "::set-output name=profile::$profile"
+      #     azPSVersion: latest
+      - run: 
 
       - name: echo
         run: echo ${{steps.fncapp.outputs.profile}}
