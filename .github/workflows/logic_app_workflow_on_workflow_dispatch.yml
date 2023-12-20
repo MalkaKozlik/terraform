@@ -7,7 +7,7 @@ on:
     branches: ["feature/logic_app_workflow"]
 env:
   ARM_SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID}}
-  RESOURCE_GROUP_NAME: NetworkWatcherRG
+  RESOURCE_GROUP_NAME: "NetworkWatcherRG"
 
 jobs: 
   build-and-deploy: 
@@ -18,9 +18,9 @@ jobs:
       - uses: azure/login@v1
         with:
           creds: '{"clientId":"${{ secrets.ARM_CLIENT_ID }}","clientSecret":"${{ secrets.ARM_CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.ARM_TENANT_ID }}"}'
-      - name : az login
-        id : az-login
-        run : az login --service-principal -u ${{secrets.ARM_CLIENT_ID}} -p ${{secrets.ARM_CLIENT_SECRET}} --tenant ${{secrets.ARM_TENANT_ID}}
+      # - name : az login
+      #   id : az-login
+      #   run : az login --service-principal -u ${{secrets.ARM_CLIENT_ID}} -p ${{secrets.ARM_CLIENT_SECRET}} --tenant ${{secrets.ARM_TENANT_ID}}
 
       - uses: azure/arm-deploy@v1
         name: deploy
