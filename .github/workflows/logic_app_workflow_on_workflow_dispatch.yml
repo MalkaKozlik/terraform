@@ -1,0 +1,48 @@
+name: 'Logic App Workflow on workflow_dispatch'
+
+on:
+  push: 
+    branches: ["feature/logic_app_workflow"]
+  pull_request:
+    branches: ["feature/logic_app_workflow"]
+
+jobs: 
+  build-and-deploy: 
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: azure/login@v1
+        with:
+          creds: '{"clientId":"${{ secrets.ARM_CLIENT_ID }}","clientSecret":"${{ secrets.ARM_CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.ARM_TENANT_ID }}"}'
+          enable-AzPSSession: true 
+
+      - name: Get publish Profile
+        id: fncapp
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            $profile = Get-AzWebAppPublishingProfile `
+              -ResourceGroupName NetworkWatcherRG `
+              -Name logic-app-storage-management
+            $profile = $profile.Replace("`r", "").Replace("`n", "")
+            Write-Output "::set-output name=profile::$profile"
+          azPSVersion: latest
+
+      - name: echo
+        run: echo ${{steps.fncapp.outputs.profile}}
+      # - name : az login
+      #   id : az-login
+      #   run : az login --service-principal -u ${{secrets.ARM_CLIENT_ID}} -p ${{secrets.ARM_CLIENT_SECRET}} --tenant ${{secrets.ARM_TENANT_ID}}
+      # - name: get publish profile
+      #   id: fncapp
+      #   uses: azure/CLI@v1
+      #   with:
+      #     inlineScript: |
+            
+      # - uses: azure/arm-deploy@v1
+      #   name: deploy
+      #   with:
+      #     resourceGroupName: "NetworkWatcherRG"
+      #     template: ./ARMTemplates/LA_Standard_Basic.json
+      #     # parameters: ./ARMTemplates/LA_Standard_Basic_Param.json 
