@@ -1,17 +1,33 @@
 name: 'Logic App Workflow'
 
+# on:
+#   push: 
+#     branches: ["feature/logic_app_workflow"]
+#   pull_request:
+#     branches: ["feature/logic_app_workflow"]
 on:
-  push: 
-    branches: ["feature/logic_app_workflow"]
-  pull_request:
-    branches: ["feature/logic_app_workflow"]
+ workflow_dispatch:
+    inputs:
+      subscriptionId:
+        description: 'SubscriptionId'
+        required: true
+      resourceGroupName:
+        description: 'Resource group name'
+        required: true
 
 jobs: 
   build-and-deploy: 
     runs-on: ubuntu-latest
 
     steps:
-
       - name : az login
         id : az-login
         run : az login --service-principal -u ${{secrets.ARM_CLIENT_ID}} -p ${{secrets.ARM_CLIENT_SECRET}} --tenant ${{secrets.ARM_TENANT_ID}}
+
+      - uses: azure/arm-deploy@v1
+        name: deploy
+        with:
+          subscriptionId: ${{github.event.inputs.subscriptionId}}
+          resourceGroupName: ${{github.event.inputs.resourceGroupName}}
+          template: ./ARMTemplates/LA_Standard_Basic.json
+          # parameters: ./ARMTemplates/LA_Standard_Basic_Param.json 
