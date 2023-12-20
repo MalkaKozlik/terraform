@@ -27,7 +27,7 @@ jobs:
               -Name ${{github.event.inputs.LogicAppName}}
             $profile = $profile.Replace("`r", "").Replace("`n", "")
             Write-Output "::set-output name=profile::$profile"
-        azPSVersion: latest
+          azPSVersion: latest
 
       - name: echo
         run: echo ${{steps.fncapp.outputs.profile}}
