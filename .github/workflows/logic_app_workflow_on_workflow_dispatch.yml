@@ -5,6 +5,9 @@ on:
     branches: ["feature/logic_app_workflow"]
   pull_request:
     branches: ["feature/logic_app_workflow"]
+env:
+  ARM_SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID}}
+  RESOURCE_GROUP_NAME: NetworkWatcherRG
 
 jobs: 
   build-and-deploy: 
@@ -18,7 +21,7 @@ jobs:
       - uses: azure/arm-deploy@v1
         name: deploy
         with:
-          subscriptionId: ${{github.event.inputs.subscriptionId}}
-          resourceGroupName: ${{github.event.inputs.resourceGroupName}}
+          subscriptionId: $ARM_SUBSCRIPTION_ID
+          resourceGroupName: $RESOURCE_GROUP_NAME
           template: ./ARMTemplates/LA_Standard_Basic.json
           # parameters: ./ARMTemplates/LA_Standard_Basic_Param.json 
