@@ -5,9 +5,6 @@ on:
     branches: ["feature/logic_app_workflow"]
   pull_request:
     branches: ["feature/logic_app_workflow"]
-env:
-  ARM_SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID}}
-  RESOURCE_GROUP_NAME: "NetworkWatcherRG"
 
 jobs: 
   build-and-deploy: 
@@ -21,10 +18,16 @@ jobs:
       # - name : az login
       #   id : az-login
       #   run : az login --service-principal -u ${{secrets.ARM_CLIENT_ID}} -p ${{secrets.ARM_CLIENT_SECRET}} --tenant ${{secrets.ARM_TENANT_ID}}
-
-      - uses: azure/arm-deploy@v1
-        name: deploy
+      - name: get publish profile
+        id: fncapp
+        uses: azure/CLI@v1
         with:
-          resourceGroupName: "NetworkWatcherRG"
-          template: ./ARMTemplates/LA_Standard_Basic.json
-          # parameters: ./ARMTemplates/LA_Standard_Basic_Param.json 
+          inlineScript: |
+            profile = az webapp show --resource-group NetworkWatcherRG --name logic-app-storage-management
+            $profile
+      # - uses: azure/arm-deploy@v1
+      #   name: deploy
+      #   with:
+      #     resourceGroupName: "NetworkWatcherRG"
+      #     template: ./ARMTemplates/LA_Standard_Basic.json
+      #     # parameters: ./ARMTemplates/LA_Standard_Basic_Param.json 
