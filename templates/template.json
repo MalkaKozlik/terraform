@@ -12,7 +12,7 @@
         },
         "resource_group_location":{
             "defaultValue": "westeurope",
-            "type": "string"
+            "type": "String"
         }
     },
     "variables": {},
