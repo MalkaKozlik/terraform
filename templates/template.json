@@ -3,7 +3,6 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "workflows_logic_app_storage_management_name": {
-            "defaultValue": "logic-app-storage-management",
             "type": "String"
         },
         "connections_office365_1_externalid": {
