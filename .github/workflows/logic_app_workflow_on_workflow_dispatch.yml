@@ -23,8 +23,8 @@ jobs:
         with:
           inlineScript: |
             $profile = Get-AzWebAppPublishingProfile `
-              -ResourceGroupName ${{github.event.inputs.ResourceGroupName}} `
-              -Name ${{github.event.inputs.LogicAppName}}
+              -ResourceGroupName NetworkWatcherRG `
+              -Name logic-app-storage-management
             $profile = $profile.Replace("`r", "").Replace("`n", "")
             Write-Output "::set-output name=profile::$profile"
           azPSVersion: latest
