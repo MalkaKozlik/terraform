@@ -37,11 +37,11 @@
                         "Recurrence": {
                             "recurrence": {
                                 "frequency": "Minute",
-                                "interval": 3
+                                "interval": 10
                             },
                             "evaluatedRecurrence": {
                                 "frequency": "Minute",
-                                "interval": 3
+                                "interval": 10
                             },
                             "type": "Recurrence"
                         }
