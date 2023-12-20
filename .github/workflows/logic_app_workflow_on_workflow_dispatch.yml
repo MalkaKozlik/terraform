@@ -23,8 +23,8 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            profile = az webapp show --resource-group NetworkWatcherRG --name logic-app-storage-management
-            $profile
+            profile = "hello"
+            echo $profile
       # - uses: azure/arm-deploy@v1
       #   name: deploy
       #   with:
