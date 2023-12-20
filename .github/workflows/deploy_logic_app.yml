@@ -17,7 +17,7 @@ jobs:
       
       - name: deploy template
         id: deploy
-        user: azure/powershell@v1
+        uses: azure/powershell@v1
         with:
           inlineScript: |
             az deployment group create -g NetworkWatcherRG --template-uri ./templates/templatejson.json
