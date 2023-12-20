@@ -23,7 +23,6 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            profile = "hello"
       # - uses: azure/arm-deploy@v1
       #   name: deploy
       #   with:
