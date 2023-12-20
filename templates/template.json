@@ -12,7 +12,17 @@
         "resource_group_location":{
             "defaultValue": "westeurope",
             "type": "String"
+        },
+        "frequency":{
+            "defaultValue": "Minute",
+            "type": "String",
+            "allowedValues": [  "Second", "Minute", "Hour", "Day", "Week", "Month"]
+        },
+        "interval":{
+            "defaultValue": 10,
+            "type": "int"
         }
+
     },
     "variables": {},
     "resources": [
@@ -35,12 +45,12 @@
                     "triggers": {
                         "Recurrence": {
                             "recurrence": {
-                                "frequency": "Minute",
-                                "interval": 10
+                                "frequency": "[parameters('frequency')]",
+                                "interval": "[parameters('interval')]"
                             },
                             "evaluatedRecurrence": {
-                                "frequency": "Minute",
-                                "interval": 10
+                                "frequency": "[parameters('frequency')]",
+                                "interval": "[parameters('interval')]"
                             },
                             "type": "Recurrence"
                         }
