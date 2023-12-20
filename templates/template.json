@@ -18,10 +18,6 @@
             "apiVersion": "2017-07-01",
             "name": "[parameters('workflows_logic_app_storage_management_name')]",
             "location": "westeurope",
-            "tags": {
-                "CreationDateTime": "2023-12-20T08:34:35.6787265Z",
-                "environment": "Dev"
-            },
             "properties": {
                 "state": "Enabled",
                 "definition": {
