@@ -24,7 +24,6 @@ jobs:
         with:
           inlineScript: |
             profile = "hello"
-            echo $profile
       # - uses: azure/arm-deploy@v1
       #   name: deploy
       #   with:
