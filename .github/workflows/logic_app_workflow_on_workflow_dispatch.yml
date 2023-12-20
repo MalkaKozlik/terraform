@@ -1,14 +1,10 @@
 name: 'Logic App Workflow on workflow_dispatch'
 
 on:
- workflow_dispatch:
-    inputs:
-      subscriptionId:
-        description: 'SubscriptionId'
-        required: true
-      resourceGroupName:
-        description: 'Resource group name'
-        required: true
+  push: 
+    branches: ["feature/logic_app_workflow"]
+  pull_request:
+    branches: ["feature/logic_app_workflow"]
 
 jobs: 
   build-and-deploy: 
