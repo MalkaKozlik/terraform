@@ -17,6 +17,11 @@
             "type": "Microsoft.Logic/workflows",
             "apiVersion": "2017-07-01",
             "name": "[parameters('workflows_logic-app-subscription-management_name')]",
+            "location": "eastus",
+            // "tags": {
+            //     "CreationDateTime": "2023-12-04T06:57:50.9106248Z",
+            //     "environment": "Dev"
+            // },
             "properties": {
                 "state": "Enabled",
                 "definition": {
