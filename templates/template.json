@@ -3,17 +3,17 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "workflows_logic_app_subscription_management_name": {
-            "type": "String"
+            "type": "string"
         },
         "sites_func_subscription_management_02_externalid": {
-            "type": "String"
+            "type": "string"
         },
         "location":{
             "type": "string"
         },
         "frequency":{
             "defaultValue": "Day",
-            "type": "String",
+            "type": "sTring",
             "allowedValues": [  "Second", "Minute", "Hour", "Day", "Week", "Month"]
         },
         "interval":{
