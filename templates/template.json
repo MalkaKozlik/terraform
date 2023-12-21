@@ -12,7 +12,7 @@
             "type": "string"
         },
         "frequency":{
-            "defaultValue": "hello",
+            "defaultValue": "Day",
             "type": "String",
             "allowedValues": [  "Second", "Minute", "Hour", "Day", "Week", "Month"]
         },
