@@ -21,6 +21,6 @@ jobs:
         uses: azure/powershell@v1
         with: 
           inlineScript: |
-            az deployment group create -g stmanageaubscriptions --template-file ./templates/template.json 
+            az deployment group create -g NetworkWatcherRG --template-file ./templates/template.json 
           azPSVersion: latest
 
