@@ -13,7 +13,7 @@
         },
         "frequency":{
             "defaultValue": "Day",
-            "type": "sTring",
+            "type": "string",
             "allowedValues": [  "Second", "Minute", "Hour", "Day", "Week", "Month"]
         },
         "interval":{
