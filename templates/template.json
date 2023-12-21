@@ -9,6 +9,10 @@
         "sites_func_subscription_management_02_externalid": {
             "defaultValue": "/subscriptions/a173eef2-33d7-4d55-b0b5-18b271f8d42b/resourceGroups/rg-chaya-subscription-management/providers/Microsoft.Web/sites/func-subscription-management-02",
             "type": "String"
+        },
+        "location":{
+            "defaultValue":"westeurope",
+            "type": "string"
         }
     },
     "variables": {},
@@ -17,7 +21,7 @@
             "type": "Microsoft.Logic/workflows",
             "apiVersion": "2017-07-01",
             "name": "[parameters('workflows_logic-app-subscription-management_name')]",
-            "location": "eastus",
+            "location": "[parameters('location')]",
 
             "properties": {
                 "state": "Enabled",
