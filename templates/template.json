@@ -24,7 +24,7 @@
             "type": "int"
         },
         "schedule_hours":{
-            "defaultValue": 7,
+            "defaultValue": 8,
             "type": "int"
         },
         "schedule_minutes":{
