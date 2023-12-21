@@ -13,6 +13,23 @@
         "location":{
             "defaultValue":"eastus",
             "type": "string"
+        },
+        "frequency":{
+            "defaultValue": "Day",
+            "type": "String",
+            "allowedValues": [  "Second", "Minute", "Hour", "Day", "Week", "Month"]
+        },
+        "interval":{
+            "defaultValue": 1,
+            "type": "int"
+        },
+        "schedule_hours":{
+            "defaultValue": 7,
+            "type": "int"
+        },
+        "schedule_minutes":{
+            "defaultValue": 30,
+            "type":"int"
         }
     },
     "variables": {},
@@ -32,26 +49,26 @@
                     "triggers": {
                         "Recurrence": {
                             "recurrence": {
-                                "frequency": "Day",
-                                "interval": 1,
+                                "frequency": "[parameters('frequency')]",
+                                "interval": "[parameters('interval')]",
                                 "schedule": {
                                     "hours": [
-                                        "7"
+                                        "[parameters('schedule_hours')]"
                                     ],
                                     "minutes": [
-                                        30
+                                        "[parameters('schedule_minutes')]"
                                     ]
                                 }
                             },
                             "evaluatedRecurrence": {
-                                "frequency": "Day",
-                                "interval": 1,
+                                "frequency": "[parameters('frequency')]",
+                                "interval": "[parameters('interval')]",
                                 "schedule": {
                                     "hours": [
-                                        "7"
+                                        "[parameters('schedule_hours')]"
                                     ],
                                     "minutes": [
-                                        30
+                                        "[parameters('schedule_minutes')]"
                                     ]
                                 }
                             },
