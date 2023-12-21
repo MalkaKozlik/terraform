@@ -11,7 +11,7 @@
             "type": "String"
         },
         "location":{
-            "defaultValue":"westeurope",
+            "defaultValue":"eastus",
             "type": "string"
         }
     },
