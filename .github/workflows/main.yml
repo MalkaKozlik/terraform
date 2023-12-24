@@ -34,9 +34,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      defaults:
-        run:
-          working-directory: terraform
+      # defaults:
+      #   run:
+      #     working-directory: terraform
 
       - uses: actions/checkout@v3
 
