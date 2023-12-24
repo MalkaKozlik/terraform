@@ -17,6 +17,8 @@ jobs:
       #   with:
       #     creds: '{"clientId":"${{ secrets.ARM_CLIENT_ID }}","clientSecret":"${{ secrets.ARM_CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.ARM_TENANT_ID }}"}'
       #     enable-AzPSSession: true 
+      - name: print some thing 
+        run: echo "hello deploy logic app template"
       
       - name: deploy template
         id: deploy
