@@ -1,19 +1,22 @@
 name: "deploy logic app template"
 
 on:
-  push:
-    branches: ["feature/new_logic_app_workflow"]
+  workflow_run:
+    workflows: ["Build and deploy container app to Azure Function App"]
+    types:
+      - completed
+
 
 jobs:
   deploy-template:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: azure/login@v1
-        with:
-          creds: '{"clientId":"${{ secrets.ARM_CLIENT_ID }}","clientSecret":"${{ secrets.ARM_CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.ARM_TENANT_ID }}"}'
-          enable-AzPSSession: true 
+      # - uses: actions/checkout@v2
+      # - uses: azure/login@v1
+      #   with:
+      #     creds: '{"clientId":"${{ secrets.ARM_CLIENT_ID }}","clientSecret":"${{ secrets.ARM_CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.ARM_TENANT_ID }}"}'
+      #     enable-AzPSSession: true 
       
       - name: deploy template
         id: deploy

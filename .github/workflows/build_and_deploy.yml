@@ -1,9 +1,11 @@
 name: Build and deploy container app to Azure Function App
 
 on:
-  push:
-    branches:
-      - feature/new_logic_app_workflow
+  workflow_run:
+    workflows: ["Terraform Automation"]
+    types:
+      - completed
+
 
 jobs:
   build-and-deploy
@@ -19,11 +21,14 @@ jobs:
     #     directory:
     #       - funciton_apps/function_app1
 
-    # steps:
-    # - name: 📂 Checkout repository
-    #   uses: actions/checkout@v4
-    #   with:
-    #     fetch-depth: 0
+    steps:
+    - name: 📂 Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: print something
+      run: echo "hello world!"
 
     # - name: 🔎 Determine modified directory
     #   id: determine_directory
